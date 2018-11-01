@@ -1,0 +1,508 @@
+﻿body {
+    background-color: #F2F4F8;
+    /*font-size: 12px;*/
+    line-height: 1.5;
+    font-family: Tahoma,Simsun,sans-serif;
+    color: #333;
+}
+.w1129 {
+    min-width: 980px;
+    max-width: 1180px;
+    width: 100%;
+    _width: 980px;
+    margin: 0 auto;
+    position: relative;
+}
+element.style {
+    padding-right: 10px;
+}
+div {
+    display: block;
+}
+.bg-gray {
+    background: #F2F4F8;
+    height: 1%;
+    min-height: 20px;
+    font-family: "SimHei";
+    padding-bottom: 48px;
+}
+.main_box {
+    float: left;
+    width: 100%;
+}
+.left-wrap {
+    padding-right: 269px;
+}
+.train-info {
+    height: 78px;
+    background: #5D9BF2;
+}
+.ctiy {
+    float: left;
+    line-height: 78px;
+    height: 78px;
+    padding-left: 26px;
+}
+.ctiy i {
+    float: left;
+}
+.icon1 {
+    display: inline-block;
+    width: 24px;
+    height: 16px;
+    background: url(http://pic.c-ctrip.com/train/railway_v2/new-icon.png) 0px -70px no-repeat;
+    margin: 32px 17px 0 0;
+}
+.ctiy strong {
+    font-size: 20px;
+    color: #fff;
+    float: left;
+}
+strong, b {
+    font-weight: bold;
+}
+.icon2 {
+    display: inline-block;
+    width: 32px;
+    height: 5px;
+    background: url(http://pic.c-ctrip.com/train/railway_v2/new-icon.png) 0px -123px no-repeat;
+    margin: 37px 10px 0 20px;
+}
+.screen-box {
+    background: #fff;
+    padding: 0 20px;
+}
+.train-box {
+    border-top: 1px solid #F4F4F4;
+    position: relative;
+    height: 1%;
+    min-height: 20px;
+    margin-top: 10px;
+}
+.icon3 {
+    width: 20px;
+    height: 17px;
+    background: url(http://pic.c-ctrip.com/train/railway_v2/new-icon.png) 0px -96px no-repeat;
+    float: left;
+    margin-top: 18px;
+}
+.train-box .titles {
+    float: left;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 16px 0 0 22px;
+    width: 60px;
+    color: #666;
+}
+.train-box .list-label1 {
+    float: left;
+    /*padding: 0 0 0 110px;*/
+    margin-left:110px;
+    margin-top: -30px;
+    width: 85%;
+}
+.train-box .yiban {
+    position: relative;
+    background: #fff;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 34px 0 9px;
+    border: 1px solid #E0E0E0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 10px 10px 0 0;
+    font-family: arial;
+    cursor: pointer;
+}
+.train-box span {
+    float: left;
+}
+.train-box:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.icon4 {
+    width: 18px;
+    height: 22px;
+    background: url(http://pic.c-ctrip.com/train/railway_v2/new-icon.png) no-repeat 0 0;
+    float: left;
+    margin: 15px 0 0 8px;
+}
+.icon5 {
+    width: 20px;
+    height: 16px;
+    background: url(http://pic.c-ctrip.com/train/railway_v2/new-icon.png) 0px -138px no-repeat;
+    float: left;
+    margin-top: 18px;
+}
+.seat-box {
+    border-top: 1px solid #F4F4F4;
+    padding-left: 7px;
+    position: relative;
+    height: 1%;
+    min-height: 20px;
+    margin-top: 10px;
+}
+.seat-box .titles {
+    float: left;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 16px 0 0 22px;
+    width: 60px;
+    color: #666;
+}
+.seat-box .list-label1 {
+    float: left;
+    margin-left:110px;
+    margin-top: -30px;
+    width: 85%;
+}
+.seat-box .yiban {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 34px 0 9px;
+    border: 1px solid #E0E0E0;
+    background: #fff;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    margin: 10px 10px 0 0;
+}
+.seat-box span {
+    float: left;
+}
+.seat-box:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.passenger2 {
+    padding-left: 130px;
+    background: #fff;
+    padding-top: 25px;
+    height: 1%;
+    min-height: 20px;
+    margin-top: 8px;
+}
+.left-title {
+    font-size: 18px;
+    margin-left: -106px;
+    width: 80px;
+    float: left;
+    font-family: SimHei;
+}
+.passenger-list {
+    height: 1%;
+    min-height: 20px;
+    max-height: 72px;
+    /* overflow-y: scroll; */
+}
+.passengerdiv .user-input:nth-of-type(1) .user-name h5 {
+    margin: 3px 0 0 -18px;
+}
+.user-name h5 {
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    background: #E0E0E0;
+    font-size: 15px;
+    font-family: "Arial";
+    color: #fff;
+    text-align: center;
+    margin: 16px 0 0 -18px;
+    float: left;
+}
+.passenger-list:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.passengerdiv {
+    margin-top: -23px;
+}
+.passenger2:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+.bg-gray2 {
+    background: #FBFBFB;
+    padding-bottom: 10px;
+}
+.user-input {
+    margin: 10px 8px 0 0;
+    padding-left: 18px;
+}
+.bg-gray2 .user-name {
+    margin-top: 0;
+}
+.user-name {
+    margin-top: 10px;
+    position: relative;
+}
+.user-id {
+    margin-top: 10px;
+}
+.user-type {
+    height: 30px;
+    line-height: 16px;
+    width: 72px;
+    border: solid 1px #E0E0E0;
+    padding-left: 5px;
+    font-size: 14px;
+    font-family: SimHei;
+}
+select {
+    height: 22px;
+    margin: 0;
+    padding: 1px;
+    font: 12px/22px Tahoma,Simsun,sans-serif;
+    border: 1px solid #BBB;
+    background-color: #FFF;
+}
+option {
+    font-weight: normal;
+    display: block;
+    white-space: pre;
+    min-height: 1.2em;
+    padding: 0px 2px 1px;
+}
+.id-input {
+    width: 272px;
+    height: 28px;
+    line-height: 28px;
+    vertical-align: middle;
+    margin-top: -6px;
+    border: solid 1px #E0E0E0;
+    padding-left: 10px;
+    font-size: 14px;
+    font-family: SimHei;
+}
+input, textarea {
+    font-size: 12px;
+    outline: none;
+}
+.birth-date {
+    margin-top: 10px;
+}
+.birth-date strong {
+    font-size: 14px;
+    font-weight: normal;
+    padding-right: 15px;
+}
+.birth-date .user-type {
+    width: 80px;
+}
+.user-type {
+    height: 30px;
+    line-height: 16px;
+    width: 72px;
+    border: solid 1px #E0E0E0;
+    padding-left: 5px;
+    font-size: 14px;
+    font-family: SimHei;
+}
+select {
+    height: 22px;
+    margin: 0;
+    padding: 1px;
+    font: 12px/22px Tahoma,Simsun,sans-serif;
+    border: 1px solid #BBB;
+    background-color: #FFF;
+}
+.contacts-box {
+    padding-left: 130px;
+    padding-bottom: 20px;
+    background: #fff;
+    padding-top: 25px;
+    height: 1%;
+    min-height: 20px;
+    margin-top: 8px;
+}
+.mob-box {
+    position: relative;
+}
+.mob-input {
+    width: 368px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #E0E0E0;
+    padding-left: 10px;
+    font-size: 14px;
+    font-family: SimHei;
+}
+.speed-box {
+    padding-left: 106px;
+    padding-bottom: 10px;
+    background: #fff;
+    padding-top: 15px;
+    height: 1%;
+    min-height: 20px;
+    margin-top: 8px;
+}
+.speed-titlt {
+    width: 80px;
+    height: 68px;
+    background: url(http://pic.c-ctrip.com/train/railway_v2/new-icon.png) 13px -350px no-repeat;
+    margin-left: -80px;
+    float: left;
+    border-right: 1px solid #f4f4f4;
+    margin-top: -10px;
+}
+.speed-titlt strong {
+    padding-top: 44px;
+    color: #C5D4EA;
+    display: block;
+    font-size: 13px;
+}
+.speed-right {
+    font-size: 14px;
+    position: relative;
+    padding-left: 26px;
+}
+.speed-top {
+    /*padding-top: 10px;*/
+    height: 24px;
+    position: relative;
+}
+.speed-top span {
+    float: left;
+}
+.gray-txt {
+    color: #999;
+    padding-right: 8px;
+}
+.speed-top .st1 {
+    color: #333;
+    padding-right: 8px;
+}
+.speed-top span {
+    float: left;
+}
+.price-lay {
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    right: 80px;
+    color: #ff6600;
+}
+dfn {
+    margin-right: 2px;
+    font: normal 12px Arial;
+}
+.contract {
+    padding: 15px 0;
+    font-size: 14px;
+}
+.ban-btn-box {
+    text-align: center;
+    position: relative;
+}
+.org-btn {
+    width: 340px;
+    height: 44px;
+    line-height: 44px;
+    color: #fff;
+    font-size: 18px;
+    background: #FFA242;
+    display: inline-block;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.right-box {
+    width: 260px;
+    float: left;
+    margin-left: -260px;
+}
+.detailed-box {
+    width: 232px;
+    padding: 0 14px;
+    background: #fff;
+    margin-top: 10px;
+}
+.detailed-box li {
+    border-top: 1px dotted #e0e0e0;
+    height: 42px;
+    line-height: 42px;
+    width: 100%;
+    clear: both;
+}
+.detailed-box li .p1 {
+    font-size: 14px;
+    color: #333;
+    float: left;
+}
+.detailed-box li cite small {
+    font-size: 12px;
+    color: #ff8100;
+}
+.detailed-box li cite big {
+    font-size: 15px;
+    color: #ff8100;
+}
+.detailed-box li cite span {
+    font-size: 15px;
+    color: #999;
+    padding-left: 4px;
+}
+.total-box span {
+    float: left;
+    color: #ff8100;
+    font-size: 16px;
+    padding-left: 15px;
+}
+.total-box cite {
+    float: right;
+    padding-right: 15px;
+    font-style: normal;
+    color: #ff8100;
+    font-family: arial;
+}
+.total-box cite small {
+    font-size: 18px;
+}
+.total-box cite strong {
+    font-size: 22px;
+    font-weight: bold;
+    padding-left: 5px;
+}
+.detailed-box li cite {
+    float: right;
+    font-style: normal;
+}
+ul li, ol li {
+    list-style: none;
+}
+.qptips {
+    height: 22px;
+    line-height: 22px;
+    padding-left: 14px;
+    background: #FFEAD5;
+    color: #ff8100;
+    font-size: 14px;
+    border-top: 1px dotted #e0e0e0;
+}
+.total-box {
+    height: 50px;
+    line-height: 50px;
+    background: #fff;
+}
+.tips-box {
+    margin-top: 7px;
+    background: #fff;
+    padding: 15px 15px 0;
+}

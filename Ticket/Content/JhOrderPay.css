@@ -1,0 +1,262 @@
+﻿body {
+}
+.o_section {
+    background-color: #FBFBFB;
+}
+.order_section {
+    /* position: relative; */
+    margin-bottom: 10px;
+    background-color: #FFF;
+    z-index: 2;
+}
+.order_info_box {
+    position: relative;
+    margin-right: 300px;
+    border-right: 1px dotted #DDD;
+    background-color: #FFF;
+}
+.order_info_box:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.order_section h2 {
+    height: 44px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+    font: 22px/44px "Microsoft Yahei";
+    border-left: 4px solid #2577E3;
+    color: #666;
+}
+.tb_common {
+    margin-left: 130px;
+    /*margin-bottom: 20px;*/
+    font-size: 15px;
+}
+table {
+    border-collapse: collapse;
+}
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+.process_steps {
+    margin: -19px 0 15px 19%;
+    font-size: 12px;
+    text-align: center;
+}
+.process_steps li {
+    float: left;
+    display: inline;
+    position: relative;
+    padding-right: 12px;
+    width: 100px;
+    text-align: center;
+    _margin-left: -1px;
+}
+ul li, ol li {
+    list-style: none;
+}
+.process_steps:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.seat_info {
+    margin: 0 20px 15px 19%;
+    background: #f3f3f3;
+    padding: 10px 0;
+    line-height: 28px;
+    font-size: 15px;
+}
+.seat_info dl {
+    position: relative;
+}
+dl {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+.basefix:after {
+    clear: both;
+    content: '.';
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
+.seat_info dt {
+    position: absolute;
+    width: 110px;
+    text-align: right;
+    font-weight: bold;
+    color: #666;
+}
+.seat_info dd span {
+    display: inline-block;
+    margin-right: 10px;
+}
+.seat_info dd strong {
+    margin-right: 5px;
+}
+strong, b {
+    font-weight: bold;
+}
+.seat_info dl {
+    position: relative;
+}
+.seat_info dd .count {
+    color: #f00;
+}
+label {
+    cursor: default;
+}
+.total_price_box {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    padding-right: 20px;
+    text-align: right;
+    color: #666;
+}
+.total_price_box strong {
+    margin-right: 30px;
+}
+.total_price_box dfn {
+    margin-left: 5px;
+    vertical-align: 18px;
+    color: #333;
+}
+dfn {
+    margin-right: 2px;
+    font-style: normal;
+    font-size: 12px;
+    font-family: Arial !important;
+}
+.total_price_box .base_price {
+    font-size: 38px;
+}
+.base_price {
+    color: #F60;
+}
+.price_detail {
+    margin-left: 20px;
+    padding-bottom: 2px;
+    color: #06c;
+    border-bottom: 1px dashed #06c;
+    cursor: pointer;
+}
+.continue_box {
+    position: absolute;
+    top: 0;
+    right: -301px;
+    _right: -302px;
+    width: 300px;
+    height: 100%;
+    color: #999;
+}
+.btn_box {
+    width: 140px;
+    margin: 25px auto 0;
+}
+.btn_o {
+    margin: 10px 0 20px;
+    height: 42px;
+    line-height: 42px;
+    box-shadow: 0 1px 0 rgba(95,50,0,0.7);
+    background-color: #FFB000;
+    border: 1px solid #E77C00;
+}
+a {
+    color: #06C;
+    text-decoration: none;
+    outline: none;
+}
+input[type="button"], input[type="submit"] {
+    -webkit-appearance: none;
+}
+
+.btn_s, .btn_c, .btn_o, .btn_blue, .btn_yellow {
+    display: block;
+    width: 138px;
+    height: 28px;
+    font: bold 14px/28px SimSun sans-serif;
+    text-align: center;
+    border-radius: 3px;
+    color: #FFF;
+    margin-top: 10px;
+    cursor: pointer;
+    border: 1px solid #0055AA;
+}
+
+.btn_c {
+    font-weight: normal;
+    color: #333;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.1);
+    background-color: #FFF;
+    border-color: #D1D1D1;
+}
+
+h1, h2, h3, h4, h5 {
+    font-size: 100%;
+    font-family: Arial,Simsun,sans-serif;
+}
+.process_steps h3 {
+    background-color: #F3F3F3;
+    border: 1px solid #DDD;
+    border-width: 1px 0;
+    color: #999;
+    font-weight: bold;
+    line-height: 34px;
+    text-align: center;
+}
+.process_steps .done h3, .process_steps .doing h3, .process_steps .ok h3, .process_steps .icon_arrow {
+    background: url(http://pic.c-ctrip.com/bus/process-bg.png) no-repeat;
+}
+.process_steps .first h3 {
+    border-width: 1px 0 1px 1px;
+}
+.process_steps .done h3, .process_steps .doing h3, .process_steps .ok h3 {
+    background-position: 0px -180px;
+    background-color: #ACD252;
+    color: #fff;
+    border-color: #ACD252;
+}
+i {
+    font-style: normal;
+}
+/*.process_steps .done h3, .process_steps .doing h3, .process_steps .ok h3, .process_steps .icon_arrow {
+    background: url(http://pic.c-ctrip.com/bus/process-bg.png) no-repeat;
+}*/
+.process_steps .icon_arrow {
+    background-position: 0 -72px;
+    width: 12px;
+    height: 36px;
+    position: absolute;
+    top: 20px;
+    left: 88px;
+    right: 0;
+    overflow: hidden;
+}
+.process_steps .doing .icon_arrow {
+    background-position: 0 -36px;
+}
+

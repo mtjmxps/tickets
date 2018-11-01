@@ -1,0 +1,767 @@
+﻿
+@{
+    ViewBag.Title = "火车抢票";
+    ViewBag.total = ViewBag.price + 10;
+}
+<div class="bg-gray">
+    <div class="w1129">
+        <div class="main_box">
+            <div class="left-wrap">
+                <div class="train-info">
+                    <div class="ctiy"><i class="icon1"></i><strong id="sfrom">@ViewBag.from</strong><i class="icon2"></i><strong id="eto">@ViewBag.to</strong></div>
+                    @*<dl class="yun-date" style="" id="yunDate">
+                            <dt>云抢票大数据</dt>
+                            <dd><span>未来</span><span class="pd5">1天</span><span>放出余票</span><strong>0</strong><big>张</big></dd>
+                        </dl>*@
+                </div>
+                <div class="screen-box">
+                    <div class="train-box" style="padding: 0px 0 15px 0;">
+                        <i class="icon3"></i>
+                        <strong class="titles">日期</strong>
+                        <label class="list-label1" id="selectRecDate">
+                            <span class="yiban" style="padding-right: 10px;">
+                                <small>@ViewBag.time</small>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="train-box">
+                        <i class="icon4"></i>
+                        <strong class="titles">车次</strong>
+                        <label class="list-label1" id="selectedTrainNumbers">
+                            <span class="yiban" trainno=@ViewBag.no trainname="@ViewBag.tname" starttime="@ViewBag.stime" endtime="@ViewBag.etime">
+                                @ViewBag.tname
+                                <dl train="@ViewBag.tname" class="cite-time" style="display: none;">
+                                    <dt>@ViewBag.from-@ViewBag.to</dt>
+                                    <dd>@ViewBag.stime-@ViewBag.etime</dd>
+                                </dl>
+                            </span>
+                        </label>
+                    </div>
+                    <div class="seat-box">
+                        <i class="icon5"></i>
+                        <strong class="titles">座席</strong>
+                        <label class="list-label1" id="selectedSeats">
+                            <span class="yiban" seat="@ViewBag.seat" data-price="@ViewBag.price">@ViewBag.seat<b><strong>¥</strong>@ViewBag.price</b></span>
+                        </label>                        
+                    </div>
+                </div>
+                <div class="passenger2">
+                    <h4 class="left-title">乘客</h4>
+                    <div class="passenger-list" id="divUsers" style="display: none; overflow-y: hidden;">
+                    </div>
+                    <div class="passengerdiv" id="passengerDiv">
+
+                        <div class="user-input cur_passenger bg-gray2" style="display: block;" id="divPassengerAdult1">
+                            <div class="user-name">
+                                <h5>1</h5>
+                                <input style="" class="name-input txt_name" type="text" onfocus="UI2.InputBooking.textInputFocus(event)" @*value="请按所持证件填写乘客姓名（有中文姓名务必填写中文）"*@>
+                                @*<a href="javascript:void(0)" class="add-btn add_children" onclick="UI2.InputBooking.addPassenger(event);">
+                                    <b></b>添加同行儿童
+                                </a>*@
+                                <cite onclick="UI2.InputBooking.removePassenger(event);">删除</cite>
+                            </div>
+                            <div class="block_inform warn" style="width: 560px; height: 45px; display: none;">
+                                <b class="icon_notice"></b>请按照购票所持证件上的姓名填写，若既有中文名字也有英文名字，请填写中文名字。若填写英文名字，请按“姓/名”的形式填写，如LastName/FirstName或LastName/FirstName/MiddleName
+                            </div>
+                            <div class="prompt-name nameerror" style="display: block;">请按照购票所持证件填写中文或英文姓名</div>
+                            <div class="user-id">
+                                <select class="user-type" id="selectCard" @*onchange="UI2.InputBooking.changeClickHandler(event)"*@>
+                                    <option value="1" selected="selected">二代身份证</option>
+                                    <option value="2" >护照</option>
+                                    @*<option value="7" selected="selected">回乡证</option>*@
+                                    <option value="8" >台湾通行证</option>
+                                    <option value="32" >港澳通行证</option>
+                                </select>
+                                <input class="id-input" style="" type="text" onfocus="UI2.InputBooking.textInputFocus(event)" @*value="证件号码"*@><span class="base_txtgray">台籍乘客请使用台胞证，若证件上有中文名，请填写中文名</span>
+                            </div>
+                            <div class="prompt-id empty" style="display: none;">请填写所选证件号码</div>
+                            <div class="prompt-id error" style="display: none">请填写正确的证件号码</div>
+                            <div class="prompt-id repeat" style="display: none">此证件号码已经使用</div>
+                            <div class="birth-date" style="">
+                                <strong>出生日期</strong>
+                                <select class="user-type year" onchange="UI2.InputBooking.birthdayProcess(event);">
+                                    <option value="">-请选择-</option>
+                                    <option value="2018">2018年</option>
+                                    <option value="2017">2017年</option>
+                                    <option value="2016">2016年</option>
+                                    <option value="2015">2015年</option>
+                                    <option value="2014">2014年</option>
+                                    <option value="2013">2013年</option>
+                                    <option value="2012">2012年</option>
+                                    <option value="2011">2011年</option>
+                                    <option value="2010">2010年</option>
+                                    <option value="2009">2009年</option>
+                                    <option value="2008">2008年</option>
+                                    <option value="2007">2007年</option>
+                                    <option value="2006">2006年</option>
+                                    <option value="2005">2005年</option>
+                                    <option value="2004">2004年</option>
+                                    <option value="2003">2003年</option>
+                                    <option value="2002">2002年</option>
+                                    <option value="2001">2001年</option>
+                                    <option value="2000">2000年</option>
+                                    <option value="1999">1999年</option>
+                                    <option value="1998">1998年</option>
+                                    <option value="1997">1997年</option>
+                                    <option value="1996">1996年</option>
+                                    <option value="1995">1995年</option>
+                                    <option value="1994">1994年</option>
+                                    <option value="1993">1993年</option>
+                                    <option value="1992">1992年</option>
+                                    <option value="1991">1991年</option>
+                                    <option value="1990">1990年</option>
+                                    <option value="1989">1989年</option>
+                                    <option value="1988">1988年</option>
+                                    <option value="1987">1987年</option>
+                                    <option value="1986">1986年</option>
+                                    <option value="1985">1985年</option>
+                                    <option value="1984">1984年</option>
+                                    <option value="1983">1983年</option>
+                                    <option value="1982">1982年</option>
+                                    <option value="1981">1981年</option>
+                                    <option value="1980">1980年</option>
+                                    <option value="1979">1979年</option>
+                                    <option value="1978">1978年</option>
+                                    <option value="1977">1977年</option>
+                                    <option value="1976">1976年</option>
+                                    <option value="1975">1975年</option>
+                                    <option value="1974">1974年</option>
+                                    <option value="1973">1973年</option>
+                                    <option value="1972">1972年</option>
+                                    <option value="1971">1971年</option>
+                                    <option value="1970">1970年</option>
+                                    <option value="1969">1969年</option>
+                                    <option value="1968">1968年</option>
+                                    <option value="1967">1967年</option>
+                                    <option value="1966">1966年</option>
+                                    <option value="1965">1965年</option>
+                                    <option value="1964">1964年</option>
+                                    <option value="1963">1963年</option>
+                                    <option value="1962">1962年</option>
+                                    <option value="1961">1961年</option>
+                                    <option value="1960">1960年</option>
+                                    <option value="1959">1959年</option>
+                                    <option value="1958">1958年</option>
+                                    <option value="1957">1957年</option>
+                                    <option value="1956">1956年</option>
+                                    <option value="1955">1955年</option>
+                                    <option value="1954">1954年</option>
+                                    <option value="1953">1953年</option>
+                                    <option value="1952">1952年</option>
+                                    <option value="1951">1951年</option>
+                                    <option value="1950">1950年</option>
+                                    <option value="1949">1949年</option>
+                                    <option value="1948">1948年</option>
+                                    <option value="1947">1947年</option>
+                                    <option value="1946">1946年</option>
+                                    <option value="1945">1945年</option>
+                                    <option value="1944">1944年</option>
+                                    <option value="1943">1943年</option>
+                                    <option value="1942">1942年</option>
+                                    <option value="1941">1941年</option>
+                                    <option value="1940">1940年</option>
+                                    <option value="1939">1939年</option>
+                                    <option value="1938">1938年</option>
+                                    <option value="1937">1937年</option>
+                                    <option value="1936">1936年</option>
+                                    <option value="1935">1935年</option>
+                                    <option value="1934">1934年</option>
+                                    <option value="1933">1933年</option>
+                                    <option value="1932">1932年</option>
+                                    <option value="1931">1931年</option>
+                                    <option value="1930">1930年</option>
+                                    <option value="1929">1929年</option>
+                                    <option value="1928">1928年</option>
+                                    <option value="1927">1927年</option>
+                                    <option value="1926">1926年</option>
+                                    <option value="1925">1925年</option>
+                                    <option value="1924">1924年</option>
+                                    <option value="1923">1923年</option>
+                                    <option value="1922">1922年</option>
+                                    <option value="1921">1921年</option>
+                                    <option value="1920">1920年</option>
+                                    <option value="1919">1919年</option>
+                                    <option value="1918">1918年</option>
+                                </select>
+                                <select class="user-type month" onchange="UI2.InputBooking.birthdayProcess(event);">
+                                    <option value="">-请选择-</option>
+                                    <option value="1">1月</option>
+                                    <option value="2">2月</option>
+                                    <option value="3">3月</option>
+                                    <option value="4">4月</option>
+                                    <option value="5">5月</option>
+                                    <option value="6">6月</option>
+                                    <option value="7">7月</option>
+                                    <option value="8">8月</option>
+                                    <option value="9">9月</option>
+                                    <option value="10">10月</option>
+                                    <option value="11">11月</option>
+                                    <option value="12">12月</option>
+                                </select>
+                                <select class="user-type day" onchange="UI2.InputBooking.birthdayProcess(event);">
+                                    <option value="">-请选择-</option>
+                                    <option value="1">1日</option>
+                                    <option value="2">2日</option>
+                                    <option value="3">3日</option>
+                                    <option value="4">4日</option>
+                                    <option value="5">5日</option>
+                                    <option value="6">6日</option>
+                                    <option value="7">7日</option>
+                                    <option value="8">8日</option>
+                                    <option value="9">9日</option>
+                                    <option value="10">10日</option>
+                                    <option value="11">11日</option>
+                                    <option value="12">12日</option>
+                                    <option value="13">13日</option>
+                                    <option value="14">14日</option>
+                                    <option value="15">15日</option>
+                                    <option value="16">16日</option>
+                                    <option value="17">17日</option>
+                                    <option value="18">18日</option>
+                                    <option value="19">19日</option>
+                                    <option value="20">20日</option>
+                                    <option value="21">21日</option>
+                                    <option value="22">22日</option>
+                                    <option value="23">23日</option>
+                                    <option value="24">24日</option>
+                                    <option value="25">25日</option>
+                                    <option value="26">26日</option>
+                                    <option value="27">27日</option>
+                                    <option value="28">28日</option>
+                                    <option value="29">29日</option>
+                                    <option value="30">30日</option>
+                                    <option value="31">31日</option>
+                                </select>
+                                <div class="prompt-name daterror" style="display: none;">请选择出生日期</div>
+                                <div class="block_inform datewarn" style="display: none;">乘客小于12岁</div>
+                                <div class="block_inform datetip" style="display: none;background: #FFF8E1;width:77%;">非二代身份证购买进藏列车，请提前向相关部门申请进藏邀请函，否则可能会无法正常乘车</div>
+                            </div>
+
+                            @*<div class="stored">
+                                <label>
+                                    <em class="checkbox checkboxOn" onclick="UI2.InputBooking.emPassengerClick(event);"></em>
+                                    <span>存为常用乘客</span>
+                                </label>
+                            </div>*@
+                        </div>
+                        <div class="user-input" style="display: none" id="divAdultTemplet">
+                            <div class="user-name">
+                                <h5>1</h5>
+                                <input style="color: #999;" class="name-input txt_name" type="text" onfocus="UI2.InputBooking.textInputFocus(event)" value="请按所持证件填写乘客姓名（有中文姓名务必填写中文）">
+                                <a href="javascript:void(0)" class="add-btn add_children" onclick="UI2.InputBooking.addPassenger(event);">
+                                    <b></b>添加同行儿童
+                                </a>
+                                <cite onclick="UI2.InputBooking.removePassenger(event);">删除</cite>
+                            </div>
+                            <div class="block_inform warn" style="width: 560px; height: 45px; display: none;">
+                                <b class="icon_notice"></b>请按照购票所持证件上的姓名填写，若既有中文名字也有英文名字，请填写中文名字。若填写英文名字，请按“姓/名”的形式填写，如LastName/FirstName或LastName/FirstName/MiddleName
+                            </div>
+                            <div class="prompt-name nameerror">请按照购票所持证件填写中文或英文姓名</div>
+                            <div class="user-id">
+                                <select class="user-type" id="selectCard" onchange="UI2.InputBooking.changeClickHandler(event)">
+                                    <option value="1">二代身份证</option>
+                                    <option value="2">护照</option>
+                                    @*<option value="7">回乡证</option>*@
+                                    <option value="8">台湾通行证</option>
+                                    <option value="32">港澳通行证</option>
+                                </select>
+                                <input class="id-input" style="color: #999;" type="text" onfocus="UI2.InputBooking.textInputFocus(event)" value="证件号码"><span class="base_txtgray"></span>
+                            </div>
+                            <div class="prompt-id empty" style="display: none">请填写所选证件号码</div>
+                            <div class="prompt-id error" style="display: none">请填写正确的证件号码</div>
+                            <div class="prompt-id repeat" style="display: none">此证件号码已经使用</div>
+                            <div class="birth-date">
+                                <strong>出生日期</strong>
+                                <select class="user-type year" onchange="UI2.InputBooking.birthdayProcess(event);">
+                                    <option value="">-请选择-</option>
+                                    <option value="2018">2018年</option>
+                                    <option value="2017">2017年</option>
+                                    <option value="2016">2016年</option>
+                                    <option value="2015">2015年</option>
+                                    <option value="2014">2014年</option>
+                                    <option value="2013">2013年</option>
+                                    <option value="2012">2012年</option>
+                                    <option value="2011">2011年</option>
+                                    <option value="2010">2010年</option>
+                                    <option value="2009">2009年</option>
+                                    <option value="2008">2008年</option>
+                                    <option value="2007">2007年</option>
+                                    <option value="2006">2006年</option>
+                                    <option value="2005">2005年</option>
+                                    <option value="2004">2004年</option>
+                                    <option value="2003">2003年</option>
+                                    <option value="2002">2002年</option>
+                                    <option value="2001">2001年</option>
+                                    <option value="2000">2000年</option>
+                                    <option value="1999">1999年</option>
+                                    <option value="1998">1998年</option>
+                                    <option value="1997">1997年</option>
+                                    <option value="1996">1996年</option>
+                                    <option value="1995">1995年</option>
+                                    <option value="1994">1994年</option>
+                                    <option value="1993">1993年</option>
+                                    <option value="1992">1992年</option>
+                                    <option value="1991">1991年</option>
+                                    <option value="1990">1990年</option>
+                                    <option value="1989">1989年</option>
+                                    <option value="1988">1988年</option>
+                                    <option value="1987">1987年</option>
+                                    <option value="1986">1986年</option>
+                                    <option value="1985">1985年</option>
+                                    <option value="1984">1984年</option>
+                                    <option value="1983">1983年</option>
+                                    <option value="1982">1982年</option>
+                                    <option value="1981">1981年</option>
+                                    <option value="1980">1980年</option>
+                                    <option value="1979">1979年</option>
+                                    <option value="1978">1978年</option>
+                                    <option value="1977">1977年</option>
+                                    <option value="1976">1976年</option>
+                                    <option value="1975">1975年</option>
+                                    <option value="1974">1974年</option>
+                                    <option value="1973">1973年</option>
+                                    <option value="1972">1972年</option>
+                                    <option value="1971">1971年</option>
+                                    <option value="1970">1970年</option>
+                                    <option value="1969">1969年</option>
+                                    <option value="1968">1968年</option>
+                                    <option value="1967">1967年</option>
+                                    <option value="1966">1966年</option>
+                                    <option value="1965">1965年</option>
+                                    <option value="1964">1964年</option>
+                                    <option value="1963">1963年</option>
+                                    <option value="1962">1962年</option>
+                                    <option value="1961">1961年</option>
+                                    <option value="1960">1960年</option>
+                                    <option value="1959">1959年</option>
+                                    <option value="1958">1958年</option>
+                                    <option value="1957">1957年</option>
+                                    <option value="1956">1956年</option>
+                                    <option value="1955">1955年</option>
+                                    <option value="1954">1954年</option>
+                                    <option value="1953">1953年</option>
+                                    <option value="1952">1952年</option>
+                                    <option value="1951">1951年</option>
+                                    <option value="1950">1950年</option>
+                                    <option value="1949">1949年</option>
+                                    <option value="1948">1948年</option>
+                                    <option value="1947">1947年</option>
+                                    <option value="1946">1946年</option>
+                                    <option value="1945">1945年</option>
+                                    <option value="1944">1944年</option>
+                                    <option value="1943">1943年</option>
+                                    <option value="1942">1942年</option>
+                                    <option value="1941">1941年</option>
+                                    <option value="1940">1940年</option>
+                                    <option value="1939">1939年</option>
+                                    <option value="1938">1938年</option>
+                                    <option value="1937">1937年</option>
+                                    <option value="1936">1936年</option>
+                                    <option value="1935">1935年</option>
+                                    <option value="1934">1934年</option>
+                                    <option value="1933">1933年</option>
+                                    <option value="1932">1932年</option>
+                                    <option value="1931">1931年</option>
+                                    <option value="1930">1930年</option>
+                                    <option value="1929">1929年</option>
+                                    <option value="1928">1928年</option>
+                                    <option value="1927">1927年</option>
+                                    <option value="1926">1926年</option>
+                                    <option value="1925">1925年</option>
+                                    <option value="1924">1924年</option>
+                                    <option value="1923">1923年</option>
+                                    <option value="1922">1922年</option>
+                                    <option value="1921">1921年</option>
+                                    <option value="1920">1920年</option>
+                                    <option value="1919">1919年</option>
+                                    <option value="1918">1918年</option>
+                                </select>
+                                <select class="user-type month" onchange="UI2.InputBooking.birthdayProcess(event);">
+                                    <option value="">-请选择-</option>
+                                    <option value="1">1月</option>
+                                    <option value="2">2月</option>
+                                    <option value="3">3月</option>
+                                    <option value="4">4月</option>
+                                    <option value="5">5月</option>
+                                    <option value="6">6月</option>
+                                    <option value="7">7月</option>
+                                    <option value="8">8月</option>
+                                    <option value="9">9月</option>
+                                    <option value="10">10月</option>
+                                    <option value="11">11月</option>
+                                    <option value="12">12月</option>
+                                </select>
+                                <select class="user-type day" onchange="UI2.InputBooking.birthdayProcess(event);">
+                                    <option value="">-请选择-</option>
+                                    <option value="1">1日</option>
+                                    <option value="2">2日</option>
+                                    <option value="3">3日</option>
+                                    <option value="4">4日</option>
+                                    <option value="5">5日</option>
+                                    <option value="6">6日</option>
+                                    <option value="7">7日</option>
+                                    <option value="8">8日</option>
+                                    <option value="9">9日</option>
+                                    <option value="10">10日</option>
+                                    <option value="11">11日</option>
+                                    <option value="12">12日</option>
+                                    <option value="13">13日</option>
+                                    <option value="14">14日</option>
+                                    <option value="15">15日</option>
+                                    <option value="16">16日</option>
+                                    <option value="17">17日</option>
+                                    <option value="18">18日</option>
+                                    <option value="19">19日</option>
+                                    <option value="20">20日</option>
+                                    <option value="21">21日</option>
+                                    <option value="22">22日</option>
+                                    <option value="23">23日</option>
+                                    <option value="24">24日</option>
+                                    <option value="25">25日</option>
+                                    <option value="26">26日</option>
+                                    <option value="27">27日</option>
+                                    <option value="28">28日</option>
+                                    <option value="29">29日</option>
+                                    <option value="30">30日</option>
+                                    <option value="31">31日</option>
+                                </select>
+                                <div class="prompt-name daterror" style="display: none;">请选择出生日期</div>
+                                <div class="block_inform datewarn" style="display: none;">乘客小于12岁</div>
+                                <div class="block_inform datetip" style="display: none;background: #FFF8E1;width:77%;">非二代身份证购买进藏列车，请提前向相关部门申请进藏邀请函，否则可能会无法正常乘车</div>
+                            </div>
+
+                            <div class="stored">
+                                <label>
+                                    <em class="checkbox checkboxOn" onclick="UI2.InputBooking.emPassengerClick(event);"></em>
+                                    <span>存为常用乘客</span>
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div class="user-input" style="margin-top: 0px;display: none" id="divChildTemplet">
+                            <div class="user-name">
+                                <h5>2</h5>
+                                <span class="child-ticket">儿童票</span>
+                                <cite onclick="UI2.InputBooking.removePassenger(event);">删除</cite>
+                            </div>
+                            <div class="ticket-input">
+                                <input class="name-input txt_name" style="color: #999;" type="text" onfocus="UI2.InputBooking.textInputFocus(event)" value="请按所持证件填写乘客姓名（有中文姓名务必填写中文）">
+                            </div>
+                            <div class="prompt-name nameerror" style="display: none">请按照购票所持证件填写中文或英文姓名</div>
+                            <div class="birth-date">
+                                <strong>出生日期</strong>
+                                <select class="user-type year" onchange="UI2.InputBooking.birthdayProcess(event);">
+
+                                    <option value="">-请选择-</option>
+                                    <option value="2018">2018年</option>
+                                    <option value="2017">2017年</option>
+                                    <option value="2016">2016年</option>
+                                    <option value="2015">2015年</option>
+                                    <option value="2014">2014年</option>
+                                    <option value="2013">2013年</option>
+                                    <option value="2012">2012年</option>
+                                    <option value="2011">2011年</option>
+                                    <option value="2010">2010年</option>
+                                    <option value="2009">2009年</option>
+                                    <option value="2008">2008年</option>
+                                    <option value="2007">2007年</option>
+                                    <option value="2006">2006年</option>
+                                    <option value="2005">2005年</option>
+                                    <option value="2004">2004年</option>
+                                    <option value="2003">2003年</option>
+                                    <option value="2002">2002年</option>
+                                    <option value="2001">2001年</option>
+                                    <option value="2000">2000年</option>
+                                </select>
+                                <select class="user-type month" onchange="UI2.InputBooking.birthdayProcess(event);">
+
+                                    <option value="">-请选择-</option>
+                                    <option value="1">1月</option>
+                                    <option value="2">2月</option>
+                                    <option value="3">3月</option>
+                                    <option value="4">4月</option>
+                                    <option value="5">5月</option>
+                                    <option value="6">6月</option>
+                                    <option value="7">7月</option>
+                                    <option value="8">8月</option>
+                                    <option value="9">9月</option>
+                                    <option value="10">10月</option>
+                                    <option value="11">11月</option>
+                                    <option value="12">12月</option>
+                                </select>
+                                <select class="user-type day" onchange="UI2.InputBooking.birthdayProcess(event);">
+
+                                    <option value="">-请选择-</option>
+                                    <option value="1">1日</option>
+                                    <option value="2">2日</option>
+                                    <option value="3">3日</option>
+                                    <option value="4">4日</option>
+                                    <option value="5">5日</option>
+                                    <option value="6">6日</option>
+                                    <option value="7">7日</option>
+                                    <option value="8">8日</option>
+                                    <option value="9">9日</option>
+                                    <option value="10">10日</option>
+                                    <option value="11">11日</option>
+                                    <option value="12">12日</option>
+                                    <option value="13">13日</option>
+                                    <option value="14">14日</option>
+                                    <option value="15">15日</option>
+                                    <option value="16">16日</option>
+                                    <option value="17">17日</option>
+                                    <option value="18">18日</option>
+                                    <option value="19">19日</option>
+                                    <option value="20">20日</option>
+                                    <option value="21">21日</option>
+                                    <option value="22">22日</option>
+                                    <option value="23">23日</option>
+                                    <option value="24">24日</option>
+                                    <option value="25">25日</option>
+                                    <option value="26">26日</option>
+                                    <option value="27">27日</option>
+                                    <option value="28">28日</option>
+                                    <option value="29">29日</option>
+                                    <option value="30">30日</option>
+                                    <option value="31">31日</option>
+                                </select>
+                                <div class="prompt-name daterror" style="display: none;">请选择出生日期</div>
+                            </div>
+                            <div class="PassengerInfo">
+                                <p>
+                                    使用<span class="passengerChild"></span>的
+                                    <card class="cardname">身份证</card>取票
+                                </p>
+                                <div><span>儿童票须知</span><i class="question"></i><small>将先收取成人票价，差价于出票后3个工作退回</small></div>
+                            </div>
+                        </div>
+
+                        <div class="prompt-add">
+                            <div class="yellow-tips" style="left:0px;top:-10px;display: none" id="passengerNumberPrompt"><i></i><span>最多可添加5名乘客，如有更多人出行，请另行下单</span></div>
+                            @*<a class="add-btn" href="###" id="addPassenger"><b></b>添加乘客</a>*@<span>多名乘客、建议分开下单，提高抢票成功率</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacts-box">
+                    <h4 class="left-title">联系方式</h4>
+                    <div class="mob-box">
+                        <input id="contactMobile" style="" class="mob-input" type="text" @*value="请填写正确的手机号以接收出票通知短信"*@ onfocus="UI2.InputBooking.showContactPop(event)">
+
+                        @*<i id="qa-btn" class="question" data-role="jmp" data-params="{
+                           options
+                           {
+                           type &quot;jmp_text&quot;,
+                           template:&quot;#jmp_text&quot;,
+                           classNames:{
+                           boxType:&quot;jmp_text&quot;
+                           },
+                           &quot;content&quot;:{
+                           &quot;txt&quot;:&quot;<ul class='t_jump_content'><li>自取票（预售期为60天）：<br>22:55-6:00支付完成，6：30前回复是否有票。<br>6:00-22:55支付完成，支付成功后15分钟内回复是否出票成功。</li><li>送票上门、VIP取票（预售期为28天）：<br>00:00-08:00支付完成，9点前回复是否有票；<br>08:00-16:00支付完成，1小时内回复是否有票；<br>16:00-24:00支付完成，最晚次日9:00前回复；<br>预售期外的订单，预售期当天18:30前回复；</li><li>送票上门、VIP取票不提供退改签，您可前往火车站进行退改签服务。短信通知您，因运营商网关延迟可能导致您无法及时接收短信，请到我的订单中跟踪出票情况。</li></ul>&quot;
+												    },
+                                                    css: { maxWidth: &quot;360&quot;, minWidth: &quot;260&quot; }
+										    }
+									    }"></i>
+                        <ul class="QA1">
+                            <li>1、自取票（预售期为60天）：<br>22:55-6:00支付完成，6：30前回复是否有票。<br>6:00-22:55支付完成，支付成功后15分钟内回复是否出票成功。</li>
+                            <li>2、送票上门、VIP取票（预售期为28天）：<br>00:00-08:00支付完成，9点前回复是否有票；<br>08:00-16:00支付完成，1小时内回复是否有票；<br>16:00-24:00支付完成，最晚次日9:00前回复；<br>预售期外的订单，预售期当天18:30前回复；</li>
+                            <li>3、送票上门、VIP取票不提供退改签，您可前往火车站进行退改签服务。短信通知您，因运营商网关延迟可能导致您无法及时接收短信，请到我的订单中跟踪出票情况。</li>
+                        </ul>*@
+                    </div>
+                    <div class="prompt-name" style="display: none;" id="errorContactMobileEmpty">请填写手机号以接收出票通知短信</div>
+                    <div class="prompt-name" style="display: none;" id="errorContactMobileWrong">请填写正确的手机号以接收出票通知短信</div>
+                    <div class="pop_flt options pop_top_container" style="display: none;" id="divContactPop">
+                        <div class="pop_title">
+                            常用联系人
+                        </div>
+                        <ul class="pop_bd" id="ulContacts">
+                            <li style="color: rgb(153, 153, 153); text-align: center; border: 0px none red;">暂无联系人</li>
+                        </ul>
+                    </div>
+                    @*<div class="mob-tips" id="divLogin">该手机号已是携程会员，登录后查看抢票结果更方便！<a id="showLoginDialog" onclick="UI2.InputBooking.showLoginDialog()">登录携程帐号</a></div>*@
+                </div>
+                <div class="speed-box">
+                    <h4 class="speed-titlt">
+                        <strong>抢票加速</strong>
+                    </h4>
+                    <div class="speed-right" style="margin-top:16px">
+                        <div class="speed-top" id="selectTaoCanInfo" style="" packid="8817">
+                            <span class="gray-txt" style="display: none;">低速抢票&nbsp;&nbsp;抢票较慢，经常排队</span>
+                            <span class="st1" style="">快速抢票</span>
+                            <span class="st2" style="display: none;"><b>速度提升</b>30%</span>
+                            <span class="st3" style="">
+                                快速抢票通道，速度提升25% 抢不到全额退款
+                            </span>
+                            <span class="gray-st2" style="display: none;">
+                                <b>速度较慢</b>
+                            </span>
+                            <i class="question"></i>
+                            <strong class="price-lay"><small><dfn>¥</dfn></small><big>10</big>/份</strong>
+                        </div>
+
+
+
+                        <div class="speed-btm" id="deliveryTicket" style="display: none">
+                            <label><input name="ctl00$MainContentPlaceHolder$allDayJL" type="checkbox" id="allDayJL"></label>
+                            <span class="sb1">每天抢票时间延长至24小时</span>
+                            <span class="sb2"><b>速度提升</b>50%</span>
+                            <i class="question" data-role="jmp" data-params="{
+                               options
+                               {
+                               type &quot;jmp_text&quot;,
+                               template:&quot;#jmp_text&quot;,
+                               classNames:{
+                               boxType:&quot;jmp_text&quot;
+                               },
+                               &quot;content&quot;:{
+                               &quot;txt&quot;:&quot;<ul class='t_jump_content'><li>VIP抢票将在原先6:00~23:00抢票基础上，全天24小时为您抢票，成功率翻倍（携程运输局显示，每天夜间是放票高峰期）</li><li>夜间（23:00~6:00）抢票只支持线下出票，并送票上门，需预计收取费送费和铁路客票代收费</li><li>配送票将直接提供纸质车票，购票成功后如需变更行程，请在收到车票后至火车站办理退票或改签</li><li>若最终在正常时间段（6:00~23:00）抢到票，我们将会立即退还预收的VIP费用（如乘车人身份核验未通过，我们会为您送票上门，不退还VIP费用）</li></ul>&quot;
+												    },
+                                                    css: { maxWidth: &quot;360&quot;, minWidth: &quot;260&quot; }
+										    }
+									    }"></i>
+                        </div>
+                        <ul class="inpu-list" style="display: none" id="deliveryList">
+                            <li>
+                                <input class="city378" style="color:#999" type="text" value="姓名" id="txtDeliveryContactName">
+                                <div class="prompt-name" style="display: none;" id="errorDeliveryContactNameEx">收件人姓名有误！</div>
+                            </li>
+                            <li>
+                                所在省市
+                                <a class="select-list" href="###" id="selectDeliveryProvince"><b></b>选择省</a>
+                                <a class="select-list" href="###" id="selectDeliveryCity"><b></b>选择市</a>
+                                <a class="select-list" href="###" id="selectDeliveryCanton"><b></b>选择区</a>
+                                <div class="pop_ups city_pop" id="divProvincePop" style="display: none;margin-left: 63px;">
+                                    <a id="plink_1">上海</a><a id="plink_334">浙江省</a><a id="plink_335">江苏省</a><a id="plink_681">安徽省</a><a id="plink_5302">北京</a><a id="plink_5342">天津</a><a id="plink_5382">河北省</a><a id="plink_5430">山东省</a><a id="plink_5477">江西省</a><a id="plink_5522">福建省</a><a id="plink_5565">河南省</a><a id="plink_5591">湖北省</a><a id="plink_5619">湖南省</a><a id="plink_5639">广西壮族自治区</a><a id="plink_5700">重庆</a><a id="plink_5784">四川省</a><a id="plink_5824">贵州省</a><a id="plink_5846">云南省</a><a id="plink_5876">广东省</a><a id="plink_6166">海南省</a><a id="plink_6194">山西省</a><a id="plink_7603">甘肃省</a><a id="plink_7653">宁夏回族自治区</a><a id="plink_7661">黑龙江省</a><a id="plink_7769">吉林省</a><a id="plink_7869">辽宁省</a><a id="plink_8018">内蒙古自治区</a><a id="plink_8058">青海省</a><a id="plink_8068">陕西省</a><a id="plink_9554">新疆省</a><a id="plink_9555">西藏自治区</a><a id="plink_9926">香港</a><a id="plink_9927">澳门</a><a id="plink_9928">台湾</a>
+                                </div>
+                                <div class="pop_ups city_pop" id="divCityPop" style="display: none;margin-left: 171px;">
+
+                                </div>
+                                <div class="pop_ups city_pop" id="divCantonPop" style="display: none;margin-left: 279px;">
+
+                                </div>
+                                <div class="prompt-name" style="display: none;padding-left: 58px" id="errorDeliveryPrivinceEmpty">请选择省市区</div>
+                            </li>
+                            <li>
+                                <input style="color:#999" class="city378" type="text" value="详细地址" id="txtDeliveryAddress">
+                                <div class="prompt-name" style="display: none;" id="errorDeliveryAddressEmpty">详细地址不能为空！</div>
+                            </li>
+                            <li class="li-gray-txt" id="divCanntDelivery">23:00到6:00间抢到的票只支持送票上门，需预收配送费和铁路客票代收费</li>
+                        </ul>
+                        <span id="drop-btn" class="drop-down"></span>
+                        <ul class="speed-pop" id="taoCanInfo" style="display: none;">
+                            <em></em>
+
+                            <li packid="8817" packname="极速抢票">
+                                <div><strong>极速抢票</strong></div><p>
+                                    极速抢票通道，速度提升40%
+                                    70元用车券+抢不到全额退款
+                                </p><cite> <small><dfn>¥</dfn></small><big><span>40</span>/份</big></cite><b class="determine"></b>
+                            </li>
+                            <li packid="8818" packname="光速抢票">
+                                <div><strong>光速抢票</strong></div><p>
+                                    光速抢票通道，速度提升50%
+                                    70元用车券+抢不到全额退款
+                                </p><cite> <small><dfn>¥</dfn></small><big><span>50</span>/份</big></cite>
+                            </li>
+                            <li packid="8814" packname="高速抢票">
+                                <div><strong>高速抢票</strong></div><p>
+                                    高速抢票通道，速度提升30%
+                                    70元用车券+抢不到全额退款
+                                </p><cite> <small><dfn>¥</dfn></small><big><span>20</span>/份</big></cite>
+                            </li>
+                            <li packid="8812" packname="快速抢票">
+                                <div><strong>快速抢票</strong></div><p>
+                                    快速抢票通道，速度提升25%
+                                    50元用车券+抢不到全额退款
+                                </p><cite> <small><dfn>¥</dfn></small><big><span>10</span>/份</big></cite>
+                            </li>
+                            <li packid="7610" packname="低速抢票">
+                                <div>
+                                    <strong>低速抢票</strong><small>
+                                        成功率较低
+                                        抢票较慢，很可能排队
+                                    </small>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contract">
+                    <label>点击立即抢票表示我已阅读并同意</label><a href="http://trains.ctrip.com/trainbooking/ProductRules.aspx" target="_blank">《火车票信息服务协议》</a>
+                    、<a href="http://trains.ctrip.com/trainbooking/BookingInformationRules.aspx?type=Grab" target="_blank">《预订须知》</a>
+
+                    <span id="input-status" style="display:none ">
+
+                        、<a href="javascript:(0)" id="input-product" target="_blank"></a>
+
+                    </span>
+
+                </div>
+                <div class="ban-btn-box">
+                    <input type="submit" name="ctl00$MainContentPlaceHolder$btnNext" value="立即抢票" onclick="bill()" id="btnNext" class="org-btn" style="border: 0">
+                    <input type="submit" name="ctl00$MainContentPlaceHolder$btnGo" value="触发支付" id="btnGo" style="display:none">
+                    <img id="imgLoading" style="display: none;" src="http://pic.c-ctrip.com/common/loading_18.gif" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="nav_wrap" class="right-box">
+            <div class="fix">
+                <ul class="detailed-box" id="totalSumPrice">
+                    <li><span class="p1">票价</span><cite class="ticketprice"><cite><small><dfn>¥</dfn></small><big id="bp1">@ViewBag.price</big><span>x1</span></cite></cite></li>
+
+
+
+                    <li tao="tao"><span class="p1">快速抢票</span><cite><small><dfn>¥</dfn></small><big id="bp2">10</big><span>x1</span></cite></li>
+                </ul>
+
+                <div class="qptips">抢不到票全额退款</div>
+
+                <div class="total-box"><span>应付金额</span><cite><small><dfn>¥</dfn></small><strong id="totalMoney"></strong></cite></div>
+                <dl class="tips-box" id="kindlyReminder">
+                    <dt>温馨提示</dt>
+                    <dd>
+                        <p style="">
+                            <span>
+                                <span style="color: Red">
+                                    <i>·</i>
+
+                                    我们将为您抢票至<span id="fa-departTime">0NaN年NaN月NaN日 NaN：NaN</span>，抢不到票我们将全额退款，在抢票期间，您也可随时取消订单。
+
+
+
+                                </span>
+                            </span><br>
+                            <span><i>·</i>接受协议，代表自愿委托使用我的12306乘客进行购票。</span><br>
+                            @*<span>
+                                <i>·</i>购票成功后将
+
+                                短信
+
+
+                                通知您，因运营商网关延迟可能导致您无法及时接收短信，请到我的订单中跟踪出票情况。
+                            </span><br>
+                            <span><i>·</i>如未能成功抢票，将于1-7个工作日内退款至您的支付账户。</span><br>
+                            <span><i>·</i>票源紧张，严禁利用本网站进行囤票、占票、倒票。如果您的行为违反铁路机关相关规定的，我司将主动配合公安机关进行查处。</span><br>
+                            <span><i>·</i>往返、联程车票如遇到其中一程车次停运，另一程未停运的情况，未停运车次如需退票，铁路局也会按照退票标准收取对应手续费。 </span><br><span><i>·</i>由我司提供套餐等服务类产品，出行前支持无理由退款，出行后不支持退款。 </span><br>*@
+                        </p>
+                        <div onclick="UI2.InputBooking.reminderClick(event)">展开更多<span class="icon_down"></span></div>
+                    </dd>
+                </dl>
+                @*<div>
+                    <dl class="show-box" style="">
+                        <dt style="border-bottom: 1px dotted #e0e0e0;"><span>今天已抢的车票</span><cite><big id="yupiao">30030</big><em>张</em></cite></dt>
+                        <div id="autoTicketsPlay" style="position: relative;height: 65px">
+                            <div style="position: relative; overflow: hidden; height: 65px;">
+                                <div class="auto" style="position: absolute; width: 100%; top: -838px;" id="dlElement"><dd class=""><span>用户&nbsp;***4182</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>南昌西&nbsp;-&nbsp;萍乡北<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***5158</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>哈尔滨西&nbsp;-&nbsp;沈阳北<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***4716</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>宁波&nbsp;-&nbsp;衢州<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***2309</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>济南&nbsp;-&nbsp;青岛北<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***7399</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>杭州东&nbsp;-&nbsp;衢州<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***3174</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>济南&nbsp;-&nbsp;济宁<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***8242</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>上海&nbsp;-&nbsp;苏州北<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***0537</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>上海虹桥&nbsp;-&nbsp;天津南<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***5851</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>高安&nbsp;-&nbsp;宁波<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***8143</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>高安&nbsp;-&nbsp;宁波<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***1417</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>兰考&nbsp;-&nbsp;深圳西<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***1801</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>内江北&nbsp;-&nbsp;广州南<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***8035</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>许昌东&nbsp;-&nbsp;新乡东<em>的火车票</em></cite></dd><dd class="current"><span>用户&nbsp;***6393</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>郑州东&nbsp;-&nbsp;安阳东<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***5174</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>宁波&nbsp;-&nbsp;义乌<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***8172</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>郑州&nbsp;-&nbsp;许昌<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***8558</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>成都东&nbsp;-&nbsp;青白江东<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***0868</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>合肥南&nbsp;-&nbsp;宿州东<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***2498</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>长春&nbsp;-&nbsp;吉林<em>的火车票</em></cite></dd><dd class=""><span>用户&nbsp;***5698</span><span style="float:right">16:27&nbsp;抢到</span><br><cite>萍乡北&nbsp;-&nbsp;广州南<em>的火车票</em></cite></dd></div>
+
+                            </div>
+                        </div>
+
+                    </dl>
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+@Styles.Render("~/Content/TicketRb.css?d=datetime.now")
+@Scripts.Render("~/Scripts/jquery.js")
+@Scripts.Render("~/Scripts/myjs/TicketRb.js")

@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticket", "Ticket\Ticket.csproj", "{85E730AE-7380-4235-AC13-F6C43C1F8211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TModel", "TModel\TModel.csproj", "{E4BC0ACC-64B3-45AB-8A1D-A6D484878B3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TBLL", "TBLL\TBLL.csproj", "{A2D14CCB-922F-4C71-BF62-CF1AED4C6958}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDAL", "TDAL\TDAL.csproj", "{31579F9D-1ED4-46EA-A365-D1019EEBA3EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85E730AE-7380-4235-AC13-F6C43C1F8211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85E730AE-7380-4235-AC13-F6C43C1F8211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85E730AE-7380-4235-AC13-F6C43C1F8211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85E730AE-7380-4235-AC13-F6C43C1F8211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4BC0ACC-64B3-45AB-8A1D-A6D484878B3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4BC0ACC-64B3-45AB-8A1D-A6D484878B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4BC0ACC-64B3-45AB-8A1D-A6D484878B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4BC0ACC-64B3-45AB-8A1D-A6D484878B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2D14CCB-922F-4C71-BF62-CF1AED4C6958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D14CCB-922F-4C71-BF62-CF1AED4C6958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2D14CCB-922F-4C71-BF62-CF1AED4C6958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D14CCB-922F-4C71-BF62-CF1AED4C6958}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31579F9D-1ED4-46EA-A365-D1019EEBA3EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31579F9D-1ED4-46EA-A365-D1019EEBA3EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31579F9D-1ED4-46EA-A365-D1019EEBA3EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31579F9D-1ED4-46EA-A365-D1019EEBA3EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
