@@ -1,0 +1,418 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    //document.onclick = function (e) {
+    //    $("#dp").hide();
+    //    document.onclick = function (e) {
+    //        var src = e.target;
+    //        if (src.id === "adp" || src.id === "dp" || src.id === "pop_title" || src.id === "ulCards") {
+    //            return false;
+    //        } else {
+    //            $("#dp").hide();
+    //        }
+    //}
+</script>
+<h2>订单信息</h2>
+@*<div>日期：<span>@ViewBag.time</span>&ensp;列车编号：<span>@ViewBag.tname</span>&ensp;出发站：<span>@ViewBag.from</span>&ensp;结束站：<span>@ViewBag.to</span>&ensp;座位：<span>@ViewBag.seat</span>
+    &ensp;价格：<span>@ViewBag.price</span>&ensp;出发时间：<span>@ViewBag.stime</span>&ensp;运行时间：<span>@ViewBag.rtime</span>&ensp;结束时间：<span>@ViewBag.etime</span></div>*@
+<div id="homes" style="width:1000px;">
+    <div class="w1180 left">
+        <div class="carinfo">
+            <h3>车次信息</h3>
+            <div class="ticket">
+                <table cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="width:50px;">车票</td>
+                            <td style="width:60px;"><p id="pdate">@ViewBag.time</p><strong id="ptrain">@ViewBag.tname</strong></td>
+                            <td style="width:130px;" class="text_right"><span class="station" id="pfrom">@ViewBag.from</span><span id="pstime">@ViewBag.stime</span></td>
+                            <td style="width:200px;" class="text_center">
+                                <b class="line_arrow"></b>
+                                <div class="consuming"><i></i><span id="rtime">@ViewBag.rtime</span></div>
+                            </td>
+                            <td style="width:130px;">
+                                <span class="station" id="pto">@ViewBag.to</span>
+                                <span class="time" id="petime">@ViewBag.etime</span>
+                                <i></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="wt_ticket">
+                <div>
+                    <span id="seatname">@ViewBag.seat</span>&nbsp;&nbsp;<span class="base_price"><dfn>¥</dfn><span class="base_price" id="seatprice">@ViewBag.price</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="passenger">
+            <h3>乘客信息</h3>
+            <div class="p_info">
+                <div id="p_adult1" class="single_passenger">
+                    <div><strong class="title">第1位乘客</strong><a href="javascript:void(0)" onclick="dlps(this)">删除</a></div>
+                    <table cellpadding="0" cellspacing="0" class="tb_form">
+                        <tbody>
+                            <tr>
+                                <th>姓名</th>
+                                <td>
+                                    <div><input type="text" class="input_text" placeholder="姓名" style="width:308px;" /></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>证件信息</th>
+                                <td>
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0)" id="adp1" class="current current_sfz" onclick="showContactPop(this)">二代身份证</a>
+                                        <div id="dp1" class="options" style="display:none;">
+                                            <div class="pop_title" id="pop_title">证件类型</div>
+                                            <ul class="pop_bd" id="ulCards">
+                                                <li><a href="javascript:void(0)" type="1" style="cursor: pointer;"onclick="she(this)"><span class="float_right"></span>二代身份证</a></li>
+                                                <li><a href="javascript:void(0)"type="2" style="cursor: pointer;" onclick="she(this)"><span class="float_right"></span>护照</a></li>
+                                                @*<li><a href="javascript:void(0)"type="7" style="cursor: pointer;" onclick="she(this)"><span class="float_right"></span>回乡证</a></li>*@
+                                                <li><a href="javascript:void(0)"type="8" style="cursor: pointer;" onclick="she(this)"><span class="float_right"></span>台湾通行证</a></li>
+                                                <li class="border_none"><a href="javascript:void(0)"type="32" style="cursor: pointer;" onclick="she(this)"><span class="float_right"></span>港澳通行证</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <input id="bdp1" type="text" name="" class="input_text cardNo bigcode input_alert" bigcode="input_text cardNo bigcode" placeholder="证件号码" style=" width: 158px;" maxlength="50">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="btn_box bt_addps">
+                    <a href="javascript:void(0)" class="btn_add_p" id="addPassenger" onclick="addps()"><b></b>添加乘客</a>
+                </div>
+            </div>
+        </div>
+        <div class="form_panel">
+            <h3>取票方式</h3>
+            <div class="form_field ticket_info" id="contactTopContainer">
+                <div class="check-tit"><input type="checkbox" id="spsm" class="input-check-b" onclick="qupiaoway()"><label for="spsm">送票上门</label></div>
+                <ul class="tickets_way_tab">
+                    <li id="liTicketReceive1" name="radioTicketReceive" style="background-color:#4f87b3;" ordertype="li" value="1" @*onclick="zqp()"*@>
+                        自取票
+                        <span class="icon_tip" data-role="jmp" data-params="{
+                              options
+                              {
+                              type &quot;jmp_text&quot;,
+                              template:&quot;#jmp_text&quot;,
+                              classNames:{
+                              boxType:&quot;jmp_text&quot;
+                              },
+                              &quot;content&quot;:{
+                              &quot;txt&quot;:&quot;<ul class='t_jump_content'><li>二代身份证可在火车站、代售点、自助取票机/自助售、取一体机取票（机器无法识别身份证需到火车站人工窗口取票）。</li><li>当您购买的是高铁或动车的情况下，且始末站都具备二代居民身份证检票条件，可使用二代居民身份证原件直接在车站自动检票机办理进、出站检票手续，无需换取纸质车票。</li><li>护照、回乡证、台胞证请在火车站核验后取票，如已办理核验手续可至火车站或代售点使用原件直接取票。</li><li>儿童票需换取纸质车票才可进站乘车。</li></ul>&quot;
+												    }
+										    }
+									    }"></span>
+                        <i></i>
+                    </li>
+                    <li id="liTicketReceive2" name="radioTicketReceive" ordertype="li" value="2" @*onclick="spsm()"*@ class="">
+                        送票上门
+                        <span class="icon_tip" data-role="jmp" data-params="{
+                              options
+                              {
+                              type &quot;jmp_text&quot;,
+                              template:&quot;#jmp_text&quot;,
+                              classNames:{
+                              boxType:&quot;jmp_text&quot;
+                              },
+                              &quot;content&quot;:{
+                              &quot;txt&quot;:&quot;<ul class='t_jump_content'><li>根据您的配送地址送票上门，不在下拉框内的地区请勿下单，如区域错误导致无法配送，责任自行承担。</li><li>车站、机场、旅游度假区、岛屿、党政机关、部队、军事基地、偏远乡村不配送。</li></ul>&quot;
+												    }
+										    }
+									    }"></span>
+                        <i></i>
+
+                        <p id="emZXXZ" class="tag-orage" style="visibility: hidden;">免费选座</p>
+
+                    </li>
+                    @*<li id="liTicketReceive3" name="radioTicketReceive" ordertype="li" style="" onclick="UI2.InputPassengers.changeTicktType(3,3)" value="3" class="">
+                        车站速取<span style="color:#bbb">(非取票机)</span>
+                        <label class="base_label" style="display:none">
+
+                        </label>
+                        <span id="currentSapn" class="icon_tip" style=""></span>
+                        <i></i>
+                    </li>*@
+                </ul>
+                <table width="100%" cellpadding="0" cellspacing="0" class="tb_form">
+                    <tbody id="tbodySelfTicket" style="display: block;">
+                        <tr style="display:none">
+                            <td></td>
+                            <td>
+                                <div class="block_inform" style="width:523px;">
+                                    <b class="icon_notice"></b><span>自取票卧铺铺位是随机分配的，如需购买下铺票，请通过送票上门的方式进行购买</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                姓名
+                            </th>
+                            <td>
+                                <input type="text" id="contactName" class="input_text input_alert" @*value="中文/拼音"*@ @*tooltip*@ placeholder="中文/拼音" style="width: 308px; @*color: rgb(153, 153, 153);*@" onfocus="InputPassengersFocus(event);">
+                                <div class="pop_ups fre_pop" style="display: none;" id="divContactPop">
+                                    <div class="pop_title">
+                                        常用联系人
+                                    </div>
+                                    <ul id="ulContacts" class="pop_bd">
+                                        <li style="color: rgb(153, 153, 153); text-align: center; border: 0px none red;">暂无联系人</li>
+                                    </ul>
+                                    <div class="s_pages" id="psContacts">
+                                    </div>
+                                    <div class="pop_title">
+                                        乘客
+                                    </div>
+                                    <ul class="pop_bd" id="ulContactPassengers">
+                                        <li><a class="frequent_user">33311</a></li>
+                                    </ul>
+                                </div>
+                                <div class="block_alert force_prompt" style="display: none;" id="errorContactNameEmpty">
+                                    <b></b>请填写联系人姓名
+                                </div>
+                                <div class="block_alert force_prompt" style="display: none;" id="errorContactNameWrong">
+                                    <b></b>请确认联系人姓名是否正确
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                手机号
+                            </th>
+                            <td>
+                                <input type="text" id="contactMobile" class="input_text input_alert" @*value="请填写正确的手机号以接收出票通知短信"*@ placeholder="请填写正确的手机号以接收出票通知短信" style="width: 308px; @*color: rgb(153, 153, 153);*@" onfocus="UI2.InputPassengers.textInputFocus(event);">
+                                <div class="block_alert force_prompt" style="display: none;" id="errorContactMobileEmpty">
+                                    <b></b>请填写手机号码
+                                </div>
+                                <div class="block_alert force_prompt" style="display: none;" id="errorContactMobileWrong">
+                                    <b></b>请填写正确的手机号码
+                                </div>
+                                <div class="block_inform" style="display: none;" id="divLogin">
+                                    <b class="icon_notice"></b>您已经是正式会员，登录后页面显示预订常用信息，下单更方便哦。
+
+                                    <a href="#" id="showLoginDialog" style="text-decoration: underline;">马上登录</a>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr style="display:none">
+                            <th>
+                                Email
+                            </th>
+                            <td>
+                                <input type="text" id="contactEmail" class="input_text" value="（选填）" style="width: 308px;
+                                        color: #999;" onfocus="UI2.InputPassengers.textInputFocus(event);">
+                                <div class="block_alert" style="display: none;" id="errorContactEmailWrong">
+                                    <b></b>请填写正确的Email地址
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody id="tbodyDeliveryTicket" style="display: none;">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <th>联系人</th>
+                            <td>
+                                <input type="text" id="txtDeliveryContactName" class="input_text input_alert" @*value="中文/拼音"*@ placeholder="中文/拼音" style="width: 308px; @*color: rgb(153, 153, 153);*@" onfocus="UI2.Common.inputFocus(event);">
+                                <div class="pop_ups invoice_pop" style="display: none;" id="divDeliveryTicketPop">
+                                    <div class="pop_title">
+                                        <span style="width: 120px;">收件人</span> <span style="width: 294px;">详细地址</span> <span>
+                                            手机
+                                        </span>
+                                    </div>
+                                    <ul class="pop_bd" id="ulDeliveryTickets"></ul>
+                                    <div class="s_pages" id="psDeliveryTickets">
+                                    </div>
+                                    <div class="pop_title">
+                                        乘客
+                                    </div>
+                                    <ul class="pop_bd" id="ulDeliveryTicketPassengers">
+                                        <li><a class="frequent_user">33311</a></li>
+                                    </ul>
+                                </div>
+
+                                <div class="block_alert force_prompt" style="display: none;" id="errorDeliveryContactNameEmpty">
+                                    <b></b>请填写联系人姓名
+                                </div>
+                                <div class="block_alert force_prompt" style="display: none;" id="errorDeliveryContactNameWrong">
+                                    <b></b>请确认联系人姓名是否正确
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>手机号</th>
+                            <td>
+                                <input type="text" id="txtDeliveryMobile" class="input_text input_alert" style="width: 308px;" @*value="请填写正确的手机号以接收出票通知短信"*@ placeholder="请填写正确的手机号以接收出票通知短信" onfocus="UI2.Common.inputFocus(event);UI2.InputPassengers.textInputFocus(event);">
+                                <div class="block_alert force_prompt" style="display: none;" id="errorDeliveryMobileEmpty">
+                                    <b></b>请填写手机号码
+                                </div>
+                                <div class="block_alert force_prompt" style="display: none;" id="errorDeliveryMobileWrong">
+                                    <b></b>请填写正确的手机号码
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="tr_dispatch">
+                            <th></th>
+                            <td>
+
+                                <div id="ck_div" class="block_inform block_qp" style="width: auto; display: none;">取票时间：06:30--20:30<br>具体位置：上海虹桥B1层，到达层(B1出入口东1）“中国铁路旅游”问讯处<br>温馨提示：请于发车前40分钟完成取票</div>
+                            </td>
+                        </tr>
+
+                        @*<tr class="ck_hide" style="">
+                            <th>所在省市</th>
+                            <td>
+                                <input type="text" id="txtDeliveryProvince" class="input_text" style="width: 91px; margin-right: 5px; color: rgb(0, 0, 0);" readonly="readonly" value="选择省"><b class="icon_arrow_down" id="arrowDeliveryProvince"></b>
+                                <input type="text" id="txtDeliveryCity" class="input_text" style="width: 92px; margin-right: 5px; color: rgb(0, 0, 0);" readonly="readonly" value="选择市"><b class="icon_arrow_down" id="arrowDeliveryCity"></b>
+                                <input type="text" id="txtDeliveryCanton" class="input_text" style="width: 91px; margin-right: 5px; color: rgb(0, 0, 0);" readonly="readonly" value="选择区"><b class="icon_arrow_down" id="arrowDeliveryCanton"></b>
+                                <div class="pop_ups city_pop" id="divDeliveryProvincePop" style="margin-left: 0px; display: none;">
+                                    <a id="link_1">上海</a><a id="link_334">浙江省</a><a id="link_335">江苏省</a><a id="link_681">安徽省</a><a id="link_5302">北京</a><a id="link_5342">天津</a><a id="link_5382">河北省</a><a id="link_5430">山东省</a><a id="link_5477">江西省</a><a id="link_5522">福建省</a><a id="link_5565">河南省</a><a id="link_5591">湖北省</a><a id="link_5619">湖南省</a><a id="link_5639">广西壮族自治区</a><a id="link_5700">重庆</a><a id="link_5784">四川省</a><a id="link_5824">贵州省</a><a id="link_5846">云南省</a><a id="link_5876">广东省</a><a id="link_6166">海南省</a><a id="link_6194">山西省</a><a id="link_7603">甘肃省</a><a id="link_7653">宁夏回族自治区</a><a id="link_7661">黑龙江省</a><a id="link_7769">吉林省</a><a id="link_7869">辽宁省</a><a id="link_8018">内蒙古自治区</a><a id="link_8058">青海省</a><a id="link_8068">陕西省</a><a id="link_9554">新疆省</a><a id="link_9555">西藏自治区</a><a id="link_9926">香港</a><a id="link_9927">澳门</a><a id="link_9928">台湾</a>
+                                </div>
+                                <div class="pop_ups city_pop" style="margin-left: 108px; display: none;" id="divDeliveryCityPop">
+                                    
+                                </div>
+                                <div class="pop_ups city_pop" style="margin-left: 217px; display: none;" id="divDeliveryCantonPop">
+                                    
+                                </div>
+                                <div class="block_alert" style="display: none;" id="errorDeliveryPrivinceEmpty">
+                                    <b></b>请选择省市区
+                                </div>
+                            </td>
+                        </tr>*@
+                        <tr class="ck_hide" style="">
+                            <th>详细地址</th>
+                            <td>
+                                <span id="prefixDeliveryAddress"></span>
+                                <input type="text" name="" id="txtDeliveryAddress" class="input_text input_alert" style="width: 308px;" onfocus="UI2.InputPassengers.textInputFocus(event);">
+                                <div class="block_alert" style="display: none;" id="errorDeliveryAddressEmpty"><b></b>请填写详细地址</div>
+                                <div class="block_alert" style="display: none;" id="divCanntDelivery"><b></b>很抱歉，该地址无法保证在发车前按时送到，请更换地址 或选择<a href="###" onclick="UI2.InputPassengers.changeTicktType(1)">自取票</a></div>
+                                <div class="block_inform" style="display: none;" id="divCanDelivery"><b class="icon_notice"></b><span id="spanDeliveryDesc"></span></div>
+                            </td>
+                        </tr>
+                        <tr style="display:none">
+                            <th>
+                                Email
+                            </th>
+                            <td>
+                                <input type="text" id="txtDeliveryEmail" class="input_text" value="（选填）" style="width: 308px;
+                                        color: #999;" onfocus="UI2.InputPassengers.textInputFocus(event);">
+                                <div class="block_alert" style="display: none;" id="errorDeliveryEmail">
+                                    <b></b>请填写正确的Email地址
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form_panel">
+            <h3>
+                条款和限制
+            </h3>
+            <div class="form_field">
+                点击去支付表示您已阅读并同意
+                <a href="http://trains.ctrip.com/trainbooking/ProductRules.aspx" target="_blank">《火车票信息服务协议》</a>
+                、<a href="http://trains.ctrip.com/trainbooking/BookingInformationRules.aspx?type=supply" target="_blank">《预订须知》</a>
+
+                <span id="input-status" style="display: none">
+
+                    、<a href="javascript:(0)" id="input-product" target="_blank"></a>
+                </span>
+
+            </div>
+        </div>
+        <div class="pay_btn_box btn_box" style="margin: 20px 0 50px;">
+
+            @*<a class="go_back" onclick="javascript:UI2.InputPassengers.historyGoback()">&lt; 返回上一页</a>*@
+            <input type="submit" name="ctl00$MainContentPlaceHolder$btnNext" value="去支付" @*onclick="return UI2.InputPassengers.submitForm(event,this.form);"*@ id="btnNext" class="btn_check">
+            <input type="submit" name="ctl00$MainContentPlaceHolder$btnGo" value="触发支付" id="btnGo" style="display:none">
+            <img id="imgLoading" style="display: none;" src="http://pic.c-ctrip.com/common/loading.gif" alt="">
+        </div>
+    </div>
+    <div class="side_box">
+        <div class="side_fix_box" id="sideBox" style="top: auto;">
+            <div class="price_box">
+                <div class="price_detail_list">
+                    <span class="float_right go" id="spangoprice"><dfn>¥</dfn><span id="psgprice">@ViewBag.price</span> × <span id="psgct">1</span></span><p>
+                        去程总价：
+                    </p>
+                </div>
+                <div class="price_detail_list" id="sideBoxBack" style="display: none;">
+                    <span class="float_right back"><dfn>¥</dfn>0 × 1</span><p>
+
+                    </p>
+                </div>
+
+                <div class="price_detail_list sideBoxPackage" id="sideBoxPackage" style="display: none">
+                    <span class="float_right insurance"><dfn>¥</dfn>20 × 0</span>
+                    <p>
+                        <span class="base_txtdiv" id="spanInsuranceTips">套餐:</span>
+                    </p>
+                </div>
+                @*<div id="appendPackage">
+
+                    <div class="price_detail_list sideBoxPackage" id="taocan_" style="">
+                        <span class="float_right" id=""><dfn>￥</dfn>40 × 1</span>
+                        <p>
+                            <span class="base_txtdiv" id="spanInsuranceTips">套餐</span>
+                        </p>
+                    </div>
+                </div>*@
+
+
+                <div class="price_detail_list" id="sideBoxServiceFee" style="display:block">
+                    <span class="float_right" id="spanServiceFee"><dfn>¥</dfn><span id="dprice">5</span> × <span id="dct">1</span></span>
+                    <p style="margin-left: -80px;">代售费:</p>
+                </div>
+                <div class="price_detail_list" id="sideBoxDeliveryPrice" style="display: none;">
+                    <span class="float_right" id="spanDeliveryPrice"><dfn>¥</dfn><span id="psf">20</span></span>
+                    <p style="margin-left: -55px;">配送费:</p>
+                </div>
+                <div class="price_detail_list" id="sideBoxCouponPrice" style="display: none;">
+                    <span class="float_right"><i class="icon i1"></i><span class="iconwise"><dfn>¥</dfn><span id="spanCouponPrice">20</span></span></span>
+                    <p>优惠券：</p>
+                </div>
+                <div class="basefix">
+                    <span class="float_right"><dfn>¥</dfn><span class="base_price total" id="spantotalprice">@ViewBag.price</span></span><strong>应付总额：</strong>
+                </div>
+            </div>
+            @*<ul class="side_package mtop10" id="baoxianUl">
+        <li packid="5558" packname="租车优惠券1份/人">
+            <span class="float_right base_txtorage"><dfn>¥</dfn>10/份</span><label class="base_txtsilver" style="cursor:pointer"><i class="icon_checkbox"></i>租车优惠券</label><p class="base_txtgray">
+                70元租车券
+
+            </p>
+        </li>
+    </ul>
+    <ul class="side_package mtop10" id="taoCanInfo">
+
+        <li packid="1610" packname="极速出票、金牌客服" class="current"><span class="float_right base_txtorage"><dfn>¥</dfn>40/份</span><label style="cursor:pointer;"><i class="icon_checkbox"></i>极速出票、金牌客服</label><span class="base_txtgray">赠70元券</span></li>
+    </ul>*@
+            <dl class="tip_box" id="kindlyReminder">
+                <dt>温馨提示</dt>
+                <dd style="color:red"><i>·</i>因火车票实名制购买规定，我司只为真实的消费者代购火车票，我方有权在核实购票人身份时，要求客户提供身份证复印件核实购票人的身份，购票人身份核实通过后，才能完成购票，退票及退款，否则我司不提供售后服务。若行为严重违反铁路机关相关规定的，我司将主动配合公安机关进行查处。</dd>
+                @*<dd style=""><i>·</i>自取票（预售期为30天）：<br>22:55-6:00支付完成，6：30前回复是否有票。<br>6:00-22:55支付完成，支付成功后15分钟内回复是否出票成功。</dd>
+                <dd style=""><i>·</i>送票上门、VIP取票（预售期28天）：<br>00:00-08:00支付完成，9点前回复是否有票；<br>08:00-16:00支付完成，1小时内回复是否有票；<br>16:00-24:00支付完成，最晚次日9:00前回复；<br>预售期外的订单，预售期当天18:30前回复；<br>送票上门、VIP取票不提供退改签，您可前往火车站进行退改签服务。</dd>
+                <dd style=""><i>·</i>极速预订服务仅针对套餐用户，选择套餐后携程将为您极速代购，或者您可以通过自己12306的账号购票，无需购买套餐。</dd>
+                <dd style=""><i>·</i>短信通知您，因运营商网关延迟可能导致您无法及时接收短信，请到我的订单中跟踪出票情况。</dd>
+                <dd style=""><i>·</i>支付成功并非100%有票，如不能出票，1-3个工作日退款至您的支付账户。</dd>
+                <dd style=""><i>·</i>如遇列车停运，请最晚在发车前30分钟进行线上退票，我司将退回全款。如果已经取出车票或者列车已过发车时间，请您务必在5日内（含出发日）前往车站退票，全款将按支付渠道退回。</dd>
+                <dd style=""><i>·</i>由我司提供套餐等服务类产品，出行前支持无理由退款，出行后不支持退款。</dd>*@
+
+                <dd class="more" onclick=" UI2.InputPassengers.reminderClick(event) " style="">收起更多<em class="arr_down"></em></dd>
+            </dl>
+
+        </div>
+    </div>
+</div>
+@Styles.Render("~/Content/Order.css?d=datetime.now")
+@Scripts.Render("~/Scripts/myjs/jquerysession.js")
+@Scripts.Render("~/Scripts/myjs/Order.js")

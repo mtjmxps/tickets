@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "CkOverList";
+}
+<h4><strong>完结订单查询</strong></h4>
+<div>订单号：<input id="odnum" type="text" value="@ViewBag.sn" />@*联系电话：<input type="text" value="@ViewBag.phone" />*@<a href="javascript:void(0)" onclick="cklists()">查询</a></div>
+<hr style="border-top:2px solid #0094ff;" />
+<div id="jd">
+    <div style="float:left; overflow-y:scroll; height:480px;">
+        <table id="ddmx">
+            <tr><th class="w200">订单号</th><th class="w100">车次</th><th class="w150">出发日期</th><th class="w100">出发站</th><th class="w100">到达站</th><th class="w100">座位</th><th class="w100">单价</th><th class="w100">人数</th><th class="w100">费用</th><th class="w150">总价</th><th class="w100">下单时间</th><th class="w100">状态</th>@*<th class="w60"></th>*@</tr>
+            @foreach (var item in ViewData["ols"] as List<TModel.OrderList>)
+            {
+                <tr onclick="sps(this)"><td class="w200">@item.Sn</td><td class="w100">@item.Ptrain</td><td class="w150">@item.Pdate</td><td class="w100">@item.Pfrom</td><td class="w100">@item.Pto</td><td class="w100">@item.Pseat</td><td class="w100">@item.Price</td><td class="w100">@item.Passager</td><td class="w100">@item.Tip</td><td class="w150">@item.Total</td><td class="w100">@item.Cdate</td><td class="w100">@item.billstate.Name</td>@*<td class="w60"><input id="tk" type="button" value="退款" onclick="ttk(this)" /></td>*@</tr>
+            }
+        </table>
+    </div>
+    <div style="margin-left:817px;">
+        <p style="width:80px;font-size:16px;">乘客信息</p>
+        <table id="ckxx">
+            <tr><th class="w100">序号</th><th class="w100">姓名</th><th class="w150">证件类型</th><th class="w200">证件号</th><th class="w100">出生日期</th><th class="w100">状态</th></tr>
+            @foreach (var i in ViewData["ops"] as List<TModel.OdPassagers>)
+            {
+                <tr><td class="w100">@i.Psn</td><td class="w100">@i.Name</td><td class="w150">@i.Card</td><td class="w200">@i.Cnum</td><td class="w100">@i.Bday</td><td class="w100">@i.billstate.Name</td></tr>
+            }
+        </table>
+    </div>
+</div>
+@Styles.Render("~/Content/OrderLists.css")
+@Scripts.Render("~/Scripts/myjs/CkOverList.js")
